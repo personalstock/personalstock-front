@@ -1,0 +1,33 @@
+<div class="container">
+  
+  <div class="col-md-8">
+    <h1>PersonalStock</h1>
+  </div>
+
+  <div class="col-md-4">
+    <app-greeting></app-greeting>
+  </div>
+
+  <div class="col-md-12">
+    <app-navbar></app-navbar>
+  </div>
+
+  <div *ngIf="authenticationService.isUserLoggedIn; else unregisteredBlock" class="col-md-12">
+    <router-outlet></router-outlet>
+  </div>
+
+  <ng-template #unregisteredBlock>
+    <div class="col-md-12">
+        <app-unregistered></app-unregistered>
+    </div>
+  </ng-template>
+
+  <div class="col-md-12" style="padding-top:50px;">
+    <app-logging></app-logging>
+  </div>
+
+  <div class="col-md-12">
+    <app-footer></app-footer>
+  </div>
+  
+</div>

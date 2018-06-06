@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">Menu</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li [ngClass]="{'active': router.url==='/home'}">
+          <a routerLink="/">Home</a>
+        </li>
+        <li [ngClass]="{'active': router.url==='/orders'}">
+          <a routerLink = "/orders">Browse all orders</a>
+        </li>
+        <li [ngClass]="{'active': router.url==='/myOrders'}">
+          <a routerLink = "/myOrders">My orders</a>
+        </li>
+        <li [ngClass]="{'active': router.url==='/account'}">
+          <a routerLink = "/account">Account</a>
+        </li>
+        <li [ngClass]="{'active': router.url==='/info'}">
+          <a routerLink = "/info">How does it work?</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

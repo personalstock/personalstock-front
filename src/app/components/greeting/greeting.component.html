@@ -1,0 +1,10 @@
+<div class="greeting">
+  <div *ngIf="authenticationService.isUserLoggedIn; else unregisteredMessage">
+      Hello, username!
+      &nbsp;&nbsp;
+      <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+  <ng-template #unregisteredMessage>
+      Hello, guest!
+  </ng-template>
+</div>
