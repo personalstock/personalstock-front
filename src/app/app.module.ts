@@ -21,6 +21,8 @@ import { UserService } from './services/user.service';
 import { AboutComponent } from './components/about/about.component';
 import { LoggingComponent } from './components/logging/logging.component';
 import { LoggingService } from './services/logging.service';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +39,14 @@ import { LoggingService } from './services/logging.service';
     AddOrderComponent,
     AddVideoComponent,
     AccountComponent,
-    LoggingComponent
+    LoggingComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
     AuthenticationService,

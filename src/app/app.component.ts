@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { AuthenticationService } from './services/authentication.service';
 import { LoggingService } from './services/logging.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,14 @@ import { LoggingService } from './services/logging.service';
 })
 export class AppComponent {
 
+  abc = 'abc';
+
   constructor(private authenticationService: AuthenticationService,
-              private loggingService: LoggingService) {
+              private router: Router) {
   }
-  
+
+  aa() {
+    this.abc = this.authenticationService.loggedUser.login;
+    console.log(this.authenticationService.loggedUser.login);
+  }
 }

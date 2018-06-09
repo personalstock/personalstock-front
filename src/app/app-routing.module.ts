@@ -8,6 +8,9 @@ import { AddVideoComponent } from './components/add-video/add-video.component';
 import { AccountComponent } from './components/account/account.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AboutComponent } from './components/about/about.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
 { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,7 +20,9 @@ const routes: Routes = [
 { path: 'addOrder', component: AddOrderComponent },
 { path: 'info', component: AboutComponent },
 { path: 'addVideo', component: AddVideoComponent },
-{ path: 'account', component: AccountComponent }
+{ path: 'account', component: AccountComponent },
+{ path: 'register', component: RegisterComponent},
+{ path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

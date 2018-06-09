@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ export class LoggingService {
   }
   
   clear() {
-    this.logs = [];
+    //this.logs = [];
+    this.logs.push(JSON.stringify(this.authService.loggedUser));
   }
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 }

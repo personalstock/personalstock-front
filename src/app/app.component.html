@@ -1,5 +1,7 @@
 <div class="container">
   
+  {{ abc }}
+
   <div class="col-md-8">
     <h1>PersonalStock</h1>
   </div>
@@ -12,7 +14,7 @@
     <app-navbar></app-navbar>
   </div>
 
-  <div *ngIf="authenticationService.isUserLoggedIn; else unregisteredBlock" class="col-md-12">
+  <div *ngIf="authenticationService.isUserLoggedIn || this.router.url==='/login' || this.router.url==='/register'; else unregisteredBlock" class="col-md-12">
     <router-outlet></router-outlet>
   </div>
 
@@ -30,4 +32,6 @@
     <app-footer></app-footer>
   </div>
   
+
+  <button (click)="aa()">AAAAA</button>
 </div>

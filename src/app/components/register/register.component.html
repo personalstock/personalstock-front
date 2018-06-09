@@ -1,3 +1,15 @@
-<p>
-  register works!
-</p>
+Register new account:
+<br>
+<input [(ngModel)]="credentialsToRegister.login" placeholder="Login">
+<br>
+<input [(ngModel)]="credentialsToRegister.password" placeholder="Password">
+<br>
+<input [(ngModel)]="credentialsToRegister.email" placeholder="Email">
+<br>
+<input [(ngModel)]="credentialsToRegister.firstName" placeholder="First name">
+<br>
+<input [(ngModel)]="credentialsToRegister.lastName" placeholder="Last name">
+<br>
+<input [(ngModel)]="credentialsToRegister.about" placeholder="About">
+<br>
+<button (click)="addAccount()">Register</button>
