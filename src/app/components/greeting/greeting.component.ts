@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AccountService } from '../../services/account.service';
 import { LoggingService } from '../../services/logging.service';
 
 @Component({
@@ -9,9 +9,7 @@ import { LoggingService } from '../../services/logging.service';
 })
 export class GreetingComponent implements OnInit {
 
-  la = 'la';
-
-  constructor(private authenticationService: AuthenticationService,
+  constructor(private accountService: AccountService,
               private logger: LoggingService) { }
 
   ngOnInit() {
@@ -19,7 +17,7 @@ export class GreetingComponent implements OnInit {
 
   logout() {
     this.logger.add('GreetingComponent: logging out');
-    this.authenticationService.logout();
+    this.accountService.logout();
   }
 
 }

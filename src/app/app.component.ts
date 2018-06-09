@@ -1,6 +1,6 @@
 import { Component, OnChanges } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { AuthenticationService } from './services/authentication.service';
+import { AccountService } from './services/account.service';
 import { LoggingService } from './services/logging.service';
 import { Router } from '@angular/router';
 
@@ -11,14 +11,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
 
-  abc = 'abc';
-
-  constructor(private authenticationService: AuthenticationService,
+  constructor(private accountService: AccountService,
               private router: Router) {
   }
 
-  aa() {
-    this.abc = this.authenticationService.loggedUser.login;
-    console.log(this.authenticationService.loggedUser.login);
-  }
 }

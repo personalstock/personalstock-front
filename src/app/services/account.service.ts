@@ -5,27 +5,25 @@ import { Account } from '../model/account';
 import { LoggingService } from './logging.service';
 import { AccountComponent } from '../components/account/account.component';
 import { Observable } from 'rxjs';
-import { TestService } from '../service/test.service';
+import { LoginService } from '../service/login.service';
 
 const ACCOUNT_API_URL = 'http://localhost:8080/api/account';
-const HTTP_OPTIONS_LOGIN = {
-  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'})
-};
-const HTTP_OPTIONS_API = {
+
+const HTTP_HEADERS_API = {
   headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
 };
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService implements OnInit {
+export class AccountService implements OnInit {
 
   isUserLoggedIn: boolean;
   loggedUser: Account;
 
   constructor(private httpClient: HttpClient,
               // private loggingService: LoggingService,
-              private test: TestService) { }
+              private loginService: LoginService) { }
 
   ngOnInit() {
     this.isUserLoggedIn = false;
@@ -43,7 +41,7 @@ export class AuthenticationService implements OnInit {
     //                 console.log('retrieved acc:' + JSON.stringify(retrievedAccount));
     //                 console.log('logged User: ' + JSON.stringify(this.loggedUser));
     //               });
-    this.test.login(login, password).subscribe(resp => {
+    this.loginService.login(login, password).subscribe(resp => {
       console.log(JSON.stringify(resp));
       this.loggedUser = resp;
     });
@@ -59,11 +57,11 @@ export class AuthenticationService implements OnInit {
 
   addAccount(account: Account): Observable<Account> {
     console.log('AuthService: about to add account ' + JSON.stringify(account));
-    return this.httpClient.post<Account>(ACCOUNT_API_URL, account, HTTP_OPTIONS_API);
+    return this.httpClient.post<Account>(ACCOUNT_API_URL, account, HTTP_HEADERS_API);
   }
 
   updateAccount(account: Account) {
-    return this.httpClient.put<Account>(ACCOUNT_API_URL, account, HTTP_OPTIONS_API);
+    return this.httpClient.put<Account>(ACCOUNT_API_URL, account, HTTP_HEADERS_API);
   }
 
   deleteAccount(account: Account) {

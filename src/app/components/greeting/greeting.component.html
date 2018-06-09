@@ -1,6 +1,6 @@
 <div class="greeting">
   <br>
-    <div *ngIf="authenticationService.isUserLoggedIn; else unregisteredMessage">
+    <div *ngIf="accountService.isUserLoggedIn; else unregisteredMessage">
       <p>{{ la }}</p>
       &nbsp;&nbsp;
       <button class="btn btn-danger" (click)="logout()">Logout</button>

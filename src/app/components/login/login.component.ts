@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
+import { AccountService } from '../../services/account.service';
 import { LoggingService } from '../../services/logging.service';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   login: string;
   password: string;
 
-  constructor(private authenticationService: AuthenticationService,
+  constructor(private authenticationService: AccountService,
               private logger: LoggingService,
               private router: Router) { }
 

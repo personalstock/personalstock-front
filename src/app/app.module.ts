@@ -15,7 +15,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UnregisteredComponent } from './components/unregistered/unregistered.component';
-import { AuthenticationService } from './services/authentication.service';
+import { AccountService } from './services/account.service';
 import { OrderService } from './services/order.service';
 import { UserService } from './services/user.service';
 import { AboutComponent } from './components/about/about.component';
@@ -49,10 +49,9 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule
   ],
   providers: [
-    AuthenticationService,
+    AccountService,
     OrderService,
     UserService,
-    AuthenticationService,
     LoggingService
   ],
   bootstrap: [AppComponent]
