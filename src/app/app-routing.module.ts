@@ -11,6 +11,7 @@ import { AboutComponent } from './components/about/about.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { AppComponent } from './app.component';
+import { ResponseComponent } from './components/response/response.component';
 
 const routes: Routes = [
 { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
 { path: 'account', component: AccountComponent },
 { path: 'addVideo', component: AddVideoComponent },
 { path: 'register', component: RegisterComponent},
-{ path: 'login', component: LoginComponent}
+{ path: 'login', component: LoginComponent},
+{ path: 'response', component: ResponseComponent}
 ];
 
 @NgModule({

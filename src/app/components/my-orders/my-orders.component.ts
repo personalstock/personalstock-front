@@ -1,8 +1,11 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+
 import { Order } from '../../model/order';
-import { OrdersComponent } from '../orders/orders.component';
-import { OrderService } from '../../services/order.service';
+import { Video } from '../../model/video';
 import { AccountService } from '../../services/account.service';
+import { OrderService } from '../../services/order.service';
+import { VideoService } from '../../services/video.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-orders',
@@ -15,7 +18,8 @@ export class MyOrdersComponent implements OnInit, AfterViewInit {
   accountId: number;
 
   constructor(private orderService: OrderService,
-              private accountService: AccountService) { }
+              private accountService: AccountService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getMyOrders();
@@ -29,6 +33,10 @@ export class MyOrdersComponent implements OnInit, AfterViewInit {
     this.accountId = this.accountService.loggedUser.id;
     this.orderService.getOrdersByPoster(this.accountId)
                      .subscribe(returnedOrders => this.myOrders = returnedOrders);
+  }
+
+  seeVideos(orderId: number) {
+    this.router.navigate(['/response'], {queryParams: {order: orderId}});
   }
 
 }

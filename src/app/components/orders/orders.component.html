@@ -1,6 +1,6 @@
 <h2>All orders</h2>
 
-<div class="col-lg-5">
+<div class="col-lg-6">
   <div class="panel-group">
 
     <div *ngFor="let order of orders">
@@ -21,8 +21,10 @@
 
   </div>
 </div>
-<div data-spy="affix">
-  <div *ngIf="selectedOrder !== null">
-    <app-order-detail [order]="selectedOrder"></app-order-detail>
+<div class="col-lg-6">
+  <div style="position:fixed;">
+    <div *ngIf="selectedOrder !== null">
+      <app-order-detail [order]="selectedOrder"></app-order-detail>
+    </div>
   </div>
 </div>

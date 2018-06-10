@@ -16,8 +16,13 @@ export class VideoService {
 
   constructor(private httpClient: HttpClient) { }
 
-  addVideo(video: Video): Observable<Video> {
-    return this.httpClient.post<Video>(VIDEO_API_URL, video, HTTP_HEADERS_API);
+  addVideo(video: Video): Observable<Video[]> {
+    return this.httpClient.post<Video[]>(VIDEO_API_URL, video, HTTP_HEADERS_API);
+  }
+
+  getVideoByOrder(orderId: number): Observable<Video[]> {
+    const urlQuery = VIDEO_API_URL + '?order=' + orderId;
+    return this.httpClient.get<Video[]>(urlQuery, HTTP_HEADERS_API);
   }
 
 }

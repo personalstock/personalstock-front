@@ -24,6 +24,7 @@ import { LoggingService } from './services/logging.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { ResponseComponent } from './components/response/response.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     AccountComponent,
     LoggingComponent,
     LoginComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ResponseComponent
   ],
   imports: [
     BrowserModule,

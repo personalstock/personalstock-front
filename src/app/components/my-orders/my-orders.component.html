@@ -1,12 +1,35 @@
 <h2>My orders</h2>
-<div *ngFor="let order of myOrders">
-  <h4>{{ order.name }}</h4>
-  Order location: {{ order.location1 }} {{ order.location2 }}
-  <br>google map api will be here
-  <br>
-  Price: {{ order.price }}
-  <br>
-  Description: {{ order.description }}
-  <br>
-  Poster: {{ order.poster.login }}
+before
+<div class="col-lg-5">
+  <div class="panel-group">
+
+    <div *ngFor="let order of myOrders">
+
+          <div [ngClass]="{'panel': true, 'panel-primary': true}">
+
+            <div class="panel-heading">
+              {{ order.name }}
+            </div>
+
+            <div class="panel-body">
+              Location: {{ order.location1 }} {{ order.location2 }}
+              <br>
+              Description: {{ order.description }}
+              <br>
+              Price: {{ order.price }}
+            </div>
+            
+            <button (click)="seeVideos(order.id)">Check order videos</button>
+
+          </div>
+          <br>
+    </div>
+
+  </div>
 </div>
+
+
+
+
+
+    

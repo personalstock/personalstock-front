@@ -12,7 +12,8 @@
     <app-navbar></app-navbar>
   </div>
 
-  <div *ngIf="accountService.isUserLoggedIn || this.router.url==='/login' || this.router.url==='/register'; else unregisteredBlock" class="col-md-12">
+  <div *ngIf="accountService.isUserLoggedIn || accountService.loggedUser !== undefined 
+              || this.router.url==='/login' || this.router.url==='/register'; else unregisteredBlock" class="col-md-12">
     <router-outlet></router-outlet>
   </div>
 
