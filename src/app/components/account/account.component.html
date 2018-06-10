@@ -1,7 +1,15 @@
-<p>
-  Greeting placeholder
-</p>
-  <nav>
-      <a routerLink = "/account">Browse all orders</a>
-  </nav>
+<h3>Your account info</h3>
 
+Login: <input [(ngModel)]="this.userAccount.login">
+<br>
+Password: <input [(ngModel)]="userAccount.password">
+<br>
+Email: <input [(ngModel)]="userAccount.email">
+<br>
+First name: <input [(ngModel)]="userAccount.firstName">
+<br>
+Last name: <input [(ngModel)]="userAccount.lastName">
+<br>
+About: <input [(ngModel)]="this.userAccount.about">
+<br>
+<button (click)="saveChanges()">Save changes</button>

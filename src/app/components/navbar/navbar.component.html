@@ -10,6 +10,9 @@
         <li [ngClass]="{'active': router.url==='/orders'}">
           <a routerLink = "/orders">Browse all orders</a>
         </li>
+        <li [ngClass]="{'active': router.url==='/addOrder'}">
+          <a routerLink = "/addOrder">Add an order</a>
+        </li>
         <li [ngClass]="{'active': router.url==='/myOrders'}">
           <a routerLink = "/myOrders">My orders</a>
         </li>

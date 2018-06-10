@@ -1,11 +1,14 @@
 <div class="greeting">
   <br>
-    <div *ngIf="accountService.isUserLoggedIn; else unregisteredMessage">
-      <p>{{ la }}</p>
-      &nbsp;&nbsp;
-      <button class="btn btn-danger" (click)="logout()">Logout</button>
+  <div>
+    <p>Hello {{ usernameToGreet }}!</p>
   </div>
-  <ng-template #unregisteredMessage>
-      Hello, guest!
+  <div *ngIf="accountService.isUserLoggedIn; else unregisteredButtons">
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+  <ng-template #unregisteredButtons>
+    <button routerLink='/register'>Register</button>
+    &nbsp;&nbsp;
+    <button routerLink='/login'>Login</button>
   </ng-template>
 </div>
