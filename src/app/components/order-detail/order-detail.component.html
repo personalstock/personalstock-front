@@ -1,0 +1,24 @@
+<h3>Order details:</h3>
+
+Name: {{ order.name }}
+<br>
+Location:
+<br>
+{{ order.location1 }}
+<br>
+{{ order.location2 }}
+<br>
+Price:
+<br>
+{{ order.price }}
+<br>
+About:
+<br>
+{{ description }}
+<br>
+<div *ngIf="accountService.loggedUser.id !== order.poster.id; else userOwnsOrderBlock">
+  <button (click)="addVideo()">Add video</button>
+</div>
+<ng-template #userOwnsOrderBlock>
+  <p>This is your order!</p>
+</ng-template>

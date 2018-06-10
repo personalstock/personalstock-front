@@ -23,6 +23,7 @@ import { LoggingComponent } from './components/logging/logging.component';
 import { LoggingService } from './services/logging.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
+import { OrderDetailComponent } from './components/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LoginComponent } from './components/login/login.component';
     AddVideoComponent,
     AccountComponent,
     LoggingComponent,
-    LoginComponent
+    LoginComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,

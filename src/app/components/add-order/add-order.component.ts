@@ -26,6 +26,9 @@ export class AddOrderComponent implements OnInit {
   @ViewChild('createdOrderPrice')
   createdOrderPriceRef: ElementRef;
 
+  @ViewChild('createdOrderDescription')
+  createdOrderDescriptionRef: ElementRef;
+
   constructor(private orderService: OrderService,
               private accountService: AccountService,
               private router: Router) { }
@@ -38,8 +41,10 @@ export class AddOrderComponent implements OnInit {
     this.createdOrder.name = this.createdOrderNameRef.nativeElement.value;
     this.createdOrder.location1 = this.createdOrderLocation1Ref.nativeElement.value;
     this.createdOrder.location2 = this.createdOrderLocation2Ref.nativeElement.value;
+    this.createdOrder.description = this.createdOrderDescriptionRef.nativeElement.value;
     this.createdOrder.price = this.createdOrderPriceRef.nativeElement.value;
     this.createdOrder.poster = this.accountService.loggedUser;
+
     this.orderService.addOrder(this.createdOrder).subscribe();
     this.router.navigate(['/myOrders']);
   }

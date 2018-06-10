@@ -1,3 +1,28 @@
-<p>
-  orders works!
-</p>
+<h2>All orders</h2>
+
+<div class="col-lg-5">
+  <div class="panel-group">
+
+    <div *ngFor="let order of orders">
+      <div [ngClass]="{'panel': true, 'panel-primary': order === selectedOrder,
+                       'panel-default': order !== selectedOrder}">
+        <div class="panel-heading">
+          {{ order.name }}
+        </div>
+        <div class="panel-body">
+          Order location: {{ order.location1 }} {{ order.location2 }}
+          <br>
+          Price: {{ order.price }}
+          <button (click)="showOrderDetails(order)">Details</button>
+        </div>
+      </div>
+      <br>
+    </div>
+
+  </div>
+</div>
+<div data-spy="affix">
+  <div *ngIf="selectedOrder !== null">
+    <app-order-detail [order]="selectedOrder"></app-order-detail>
+  </div>
+</div>

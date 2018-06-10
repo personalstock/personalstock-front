@@ -6,5 +6,6 @@ export class Order {
     location1: string;
     location2: string;
     price: number;
+    description: string;
     poster: Account;
 }

@@ -24,8 +24,11 @@ export class RegisterComponent implements OnInit {
   addAccount() {
     console.log('Register: about to add acc ' + JSON.stringify(this.credentialsToRegister));
     this.accountService.addAccount(this.credentialsToRegister).subscribe();
-    this.accountService.login(this.credentialsToRegister.login, this.credentialsToRegister.password);
-    this.router.navigate(['/home']);
+    setTimeout(() => {
+      this.accountService.login(this.credentialsToRegister.login, this.credentialsToRegister.password);
+      this.router.navigate(['/home']);
+      console.log('timeout');
+    }, 1000);
   }
 
 }

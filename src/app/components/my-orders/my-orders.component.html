@@ -1,3 +1,12 @@
-<p>
-  my-orders works!
-</p>
+<h2>My orders</h2>
+<div *ngFor="let order of myOrders">
+  <h4>{{ order.name }}</h4>
+  Order location: {{ order.location1 }} {{ order.location2 }}
+  <br>google map api will be here
+  <br>
+  Price: {{ order.price }}
+  <br>
+  Description: {{ order.description }}
+  <br>
+  Poster: {{ order.poster.login }}
+</div>

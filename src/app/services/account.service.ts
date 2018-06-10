@@ -42,7 +42,7 @@ export class AccountService implements OnInit {
     //                 console.log('logged User: ' + JSON.stringify(this.loggedUser));
     //               });
     this.loginService.login(login, password).subscribe(resp => {
-      console.log(JSON.stringify(resp));
+      console.log('login respo' + JSON.stringify(resp));
       this.loggedUser = resp;
     });
     this.isUserLoggedIn = true;

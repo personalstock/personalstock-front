@@ -19,8 +19,8 @@ const routes: Routes = [
 { path: 'myOrders', component: MyOrdersComponent },
 { path: 'addOrder', component: AddOrderComponent },
 { path: 'info', component: AboutComponent },
-{ path: 'addVideo', component: AddVideoComponent },
 { path: 'account', component: AccountComponent },
+{ path: 'addVideo', component: AddVideoComponent },
 { path: 'register', component: RegisterComponent},
 { path: 'login', component: LoginComponent}
 ];

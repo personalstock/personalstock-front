@@ -22,4 +22,13 @@ export class OrderService {
     return this.httpClient.post<Order>(ORDER_API_URL, order, HTTP_HEADERS_API);
   }
 
+  getAllOrders(): Observable<Order[]> {
+    return this.httpClient.get<Order[]>(ORDER_API_URL, HTTP_HEADERS_API);
+  }
+
+  getOrdersByPoster(posterId: number): Observable<Order[]> {
+    const urlQuery = ORDER_API_URL + '?poster=' + posterId;
+    return this.httpClient.get<Order[]>(urlQuery, HTTP_HEADERS_API);
+  }
+
 }
