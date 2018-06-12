@@ -1,4 +1,18 @@
-Login with credentials:
-<input [(ngModel)]="login" placeholder="Login">
-<input [(ngModel)]="password" placeholder="password">
-<button (click)="attemptLogin()">Login</button>
+<form class="login-form">
+    <h2>Login</h2>
+    <div class="form-group">
+        <label for="login">Login:</label>
+        <input class="form-control" id="login" name="login" 
+               [(ngModel)]="login" placeholder="Login">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" 
+               name="pwd" [(ngModel)]="password" placeholder="Password">
+    </div>
+    <div style="margin:auto;">
+        <button class="btn btn-primary btn-lg" (click)="attemptLogin()">Login</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-primary btn-lg" routerLink="/register">No account?</button>
+    </div>
+</form> 

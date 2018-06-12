@@ -3,7 +3,8 @@
   <div>
     <p>Hello {{ usernameToGreet }}!</p>
   </div>
-  <div *ngIf="accountService.isUserLoggedIn; else unregisteredButtons">
+  <div *ngIf="loggedUser !== undefined && loggedUser !== null;
+        else unregisteredButtons">
     <button class="btn btn-danger" (click)="logout()">Logout</button>
   </div>
   <ng-template #unregisteredButtons>

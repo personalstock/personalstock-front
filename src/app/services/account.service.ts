@@ -1,10 +1,10 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, DoCheck } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Account } from '../model/account';
 import { LoggingService } from './logging.service';
 import { AccountComponent } from '../components/account/account.component';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { LoginService } from '../service/login.service';
 
 const ACCOUNT_API_URL = 'http://localhost:8080/api/account';
@@ -16,10 +16,16 @@ const HTTP_HEADERS_API = {
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService implements OnInit {
+export class AccountService implements OnInit, DoCheck {
+
 
   isUserLoggedIn: boolean;
   loggedUser: Account;
+
+
+  ngDoCheck() {
+    console.log('auth service: ' + this.loggedUser);
+  }
 
   constructor(private httpClient: HttpClient,
               // private loggingService: LoggingService,
@@ -32,21 +38,14 @@ export class AccountService implements OnInit {
   }
 
   login(login: string, password: string) {
-    // let body = new URLSearchParams();
-    // body.set('login', login);
-    // body.set('password', password);
-
-    // this.httpClient.post<Account>(ACCOUNT_API_URL, body)
-    //                 .subscribe(retrievedAccount => {this.loggedUser = retrievedAccount;
-    //                 console.log('retrieved acc:' + JSON.stringify(retrievedAccount));
-    //                 console.log('logged User: ' + JSON.stringify(this.loggedUser));
-    //               });
-    this.loginService.login(login, password).subscribe(resp => {
-      console.log('login respo' + JSON.stringify(resp));
-      this.loggedUser = resp;
+    this.loginService.login(login, password).subscribe(responseAccount => {
+      this.loggedUser = responseAccount;
     });
     this.isUserLoggedIn = true;
-    // this.loggingService.add('AuthenticationService: logged in, loggedUser: ' + JSON.stringify(this.loggedUser));
+  }
+
+  getLoggedAccount(): Observable<Account> {
+    return of(this.loggedUser);
   }
 
   logout() {

@@ -1,15 +1,36 @@
-Register new account:
-<br>
-<input [(ngModel)]="credentialsToRegister.login" placeholder="Login">
-<br>
-<input [(ngModel)]="credentialsToRegister.password" placeholder="Password">
-<br>
-<input [(ngModel)]="credentialsToRegister.email" placeholder="Email">
-<br>
-<input [(ngModel)]="credentialsToRegister.firstName" placeholder="First name">
-<br>
-<input [(ngModel)]="credentialsToRegister.lastName" placeholder="Last name">
-<br>
-<input [(ngModel)]="credentialsToRegister.about" placeholder="About">
-<br>
-<button (click)="addAccount()">Register</button>
+<form class="register-form">
+        <h2>Register new account:</h2>
+        <div class="form-group">
+            <label for="login">Login:</label>
+            <input class="form-control" id="login" name="login" 
+                   [(ngModel)]="credentialsToRegister.login" placeholder="Login" required>
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input  class="form-control" id="pwd" name="pwd"
+                    [(ngModel)]="credentialsToRegister.password" type="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+                <label for="first-name">First name:</label>
+                <input class="form-control" id="first-name" name="first-name" 
+                       [(ngModel)]="credentialsToRegister.firstName" placeholder="First name">
+        </div>
+        <div class="form-group">
+                <label for="last-name">Last name:</label>
+                <input class="form-control" id="last-name" name="last-name" 
+                       [(ngModel)]="credentialsToRegister.lastName" placeholder="Last name">
+        </div>
+        <div class="form-group">
+                <label for="email">Email address:</label>
+                <input class="form-control" id="email" name="email" 
+                       [(ngModel)]="credentialsToRegister.email" placeholder="Email">
+        </div>
+        <div class="form-group">
+                <label for="about">About:</label>
+                <input class="form-control" id="about" name="about" 
+                       [(ngModel)]="credentialsToRegister.about" placeholder="Write something about yourself">
+        </div>
+        <div style="margin:auto;">
+            <button class="btn btn-primary btn-lg" (click)="addAccount()">Register</button>
+        </div>
+    </form> 
