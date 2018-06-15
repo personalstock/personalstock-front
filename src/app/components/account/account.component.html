@@ -1,15 +1,125 @@
-<h3>Your account info</h3>
+<br>
 
-Login: <input [(ngModel)]="this.userAccount.login">
+<h2>Your account info:</h2>
+
 <br>
-Password: <input [(ngModel)]="userAccount.password">
-<br>
-Email: <input [(ngModel)]="userAccount.email">
-<br>
-First name: <input [(ngModel)]="userAccount.firstName">
-<br>
-Last name: <input [(ngModel)]="userAccount.lastName">
-<br>
-About: <input [(ngModel)]="this.userAccount.about">
-<br>
-<button (click)="saveChanges()">Save changes</button>
+
+<div *ngIf="!isEditing">
+
+    Login: {{ userAccount.login }}
+    <br><br>
+    Email: {{ userAccount.email }}
+    <br><br>
+    First name: {{ userAccount.firstName }}
+    <br><br>
+    Last name: {{ userAccount.lastName }}
+    <br><br>
+    About: {{ userAccount.about }}
+
+    <br><br>
+    <button class="btn btn-primary" (click)="edit()">Edit changes</button>
+</div>
+
+<div *ngIf="isEditing">
+
+    <form class="register-form" (ngSubmit)="saveChanges()" #updateForm="ngForm">
+
+        <div class="form-group">
+                <label for="login">Login:</label>
+                <input class="form-control" 
+                        type="text"
+                        id="login" 
+                        name="login" 
+                        [value]="userAccount.login"
+                        readonly
+                        >
+        </div>
+
+        <div class="form-group">
+                <label for="password">Password:</label>
+                <input  class="form-control"
+                        id="password" 
+                        name="password"
+                        type="password" 
+                        placeholder="Password" 
+                        required
+                        [(ngModel)]="userAccount.password"
+                        #password="ngModel"
+                        >
+        </div>
+        <div *ngIf="password.errors && password.errors.required && !password.pristine" class="alert alert-danger">
+                Password is required.
+        </div>
+
+        <div class="form-group">
+                <label for="repeatedPassword">Repeat password:</label>
+                <input  class="form-control"
+                        id="repeatedPassword" 
+                        name="repeatedPassword"
+                        type="password" 
+                        placeholder="Repeat password" 
+                        required
+                        [(ngModel)]="repeatedPassword"
+                        >
+        </div>
+        <div [hidden]="userAccount.password === repeatedPassword 
+                        || repeatedPassword.length === 0
+                        || password.pristine" 
+                        class="alert alert-danger">
+                Passwords must match.
+        </div>
+
+        <div class="form-group">
+                <label for="first-name">First name:</label>
+                <input  class="form-control" 
+                        id="first-name"        
+                        name="first-name" 
+                        placeholder="First name"
+                        [(ngModel)]="userAccount.firstName" >
+        </div>
+
+        <div class="form-group">
+                <label for="last-name">Last name:</label>
+                <input  class="form-control"
+                        id="last-name" 
+                        name="last-name" 
+                        placeholder="Last name"
+                        [(ngModel)]="userAccount.lastName" >
+        </div>
+
+        <div class="form-group">
+                <label for="email">Email address:</label>
+                <input  class="form-control"
+                        id="email" 
+                        name="email" 
+                        placeholder="Email"
+                        required
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,3})+$"
+                        [(ngModel)]="userAccount.email"
+                        #email="ngModel" >
+        </div>
+        <div [hidden]="!(email.errors && email.errors.required) || email.pristine" class="alert alert-danger">
+                Email address is required.
+        </div>
+        <div [hidden]="!(email.errors && email.errors.pattern)" class="alert alert-danger">
+                Invalid email adress.
+        </div>
+
+        <div class="form-group">
+                <label for="about">About:</label>
+                <input  class="form-control" 
+                        type="textarea"
+                        id="about" 
+                        name="about" 
+                        placeholder="Write something about yourself"
+                        [(ngModel)]="userAccount.about" >
+        </div>
+
+        <div style="margin:auto;">
+            <button [disabled]="!updateForm.form.valid"
+                    class="btn btn-primary btn-lg" 
+                    type="submit">Update</button>
+        </div>
+    </form> 
+
+</div>

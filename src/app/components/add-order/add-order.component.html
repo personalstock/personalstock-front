@@ -1,6 +1,20 @@
+<form class="register-form" #registerForm="ngForm">
 <h2>Create new order:</h2>
 <br>
-Order name: <input #createdOrderName>
+
+<div class="form-group">
+    <label for="order-name">Name:</label>
+    <input class="form-control"
+            id="order-name"
+            name="order-name"
+            (action)="disableOrderError"
+            #createdOrderName>
+</div>
+<div *ngIf="orderNoNameError">
+        At least 3 characters is required.
+</div>
+
+Order name: 
 <br>
 Location: <input #createdOrderLocation1> &nbsp; <input #createdOrderLocation2>
 <br>
@@ -8,3 +22,5 @@ Price: <input #createdOrderPrice>
 <br>
 Description: <input #createdOrderDescription>
 <button (click)="saveOrder()">Save order</button>
+
+</form> 

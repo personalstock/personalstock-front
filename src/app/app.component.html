@@ -14,19 +14,15 @@
 
   <div *ngIf="(appCompLoggedUser !== undefined && appCompLoggedUser !== null) 
               || this.router.url==='/login' || this.router.url==='/register'; 
-              else unregisteredBlock" class="col-md-12">
+              else unregisteredBlock" class="col-md-12 app-min-height">
     <router-outlet></router-outlet>
   </div>
 
   <ng-template #unregisteredBlock>
-    <div class="col-md-12">
+    <div class="col-md-12 app-min-height">
         <app-unregistered></app-unregistered>
     </div>
   </ng-template>
-<!-- 
-  <div class="col-md-12" style="padding-top:50px;">
-    <app-logging></app-logging>
-  </div> -->
 
   <div class="col-md-12">
     <app-footer></app-footer>

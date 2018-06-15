@@ -1,36 +1,109 @@
-<form class="register-form">
+<form class="register-form" (ngSubmit)="addAccount()" #registerForm="ngForm">
         <h2>Register new account:</h2>
+        <br>
+
         <div class="form-group">
-            <label for="login">Login:</label>
-            <input class="form-control" id="login" name="login" 
-                   [(ngModel)]="credentialsToRegister.login" placeholder="Login" required>
+                <label for="login">Login:</label>
+                <input class="form-control" 
+                        type="text"
+                        id="login" 
+                        name="login" 
+                        placeholder="Login"
+                        required
+                        minlength="3"
+                        [(ngModel)]="credentialsToRegister.login"
+                        #login="ngModel"
+                        >
         </div>
+        <div *ngIf="login.errors && login.errors.minlength && !login.pristine" class="alert alert-danger">
+                At least 3 characters is required.
+        </div>
+        <div *ngIf="login.errors && login.errors.required && !login.pristine" class="alert alert-danger">
+                Login is required.
+        </div>
+
         <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input  class="form-control" id="pwd" name="pwd"
-                    [(ngModel)]="credentialsToRegister.password" type="password" placeholder="Password" required>
+                <label for="password">Password:</label>
+                <input  class="form-control"
+                        id="password" 
+                        name="password"
+                        type="password" 
+                        placeholder="Password" 
+                        required
+                        [(ngModel)]="credentialsToRegister.password"
+                        #password="ngModel"
+                        >
         </div>
+        <div *ngIf="password.errors && password.errors.required && !password.pristine" class="alert alert-danger">
+                Password is required.
+        </div>
+
+        <div class="form-group">
+                <label for="repeatedPassword">Repeat password:</label>
+                <input  class="form-control"
+                        id="repeatedPassword" 
+                        name="repeatedPassword"
+                        type="password" 
+                        placeholder="Repeat password" 
+                        required
+                        [(ngModel)]="repeatedPassword"
+                        >
+        </div>
+        <div [hidden]="credentialsToRegister.password === repeatedPassword 
+                        || repeatedPassword.length === 0
+                        || password.pristine" 
+                        class="alert alert-danger">
+                Passwords must match.
+        </div>
+
         <div class="form-group">
                 <label for="first-name">First name:</label>
-                <input class="form-control" id="first-name" name="first-name" 
-                       [(ngModel)]="credentialsToRegister.firstName" placeholder="First name">
+                <input  class="form-control" 
+                        id="first-name"        
+                        name="first-name" 
+                        placeholder="First name"
+                        [(ngModel)]="credentialsToRegister.firstName" >
         </div>
+
         <div class="form-group">
                 <label for="last-name">Last name:</label>
-                <input class="form-control" id="last-name" name="last-name" 
-                       [(ngModel)]="credentialsToRegister.lastName" placeholder="Last name">
+                <input  class="form-control"
+                        id="last-name" 
+                        name="last-name" 
+                        placeholder="Last name"
+                        [(ngModel)]="credentialsToRegister.lastName" >
         </div>
+
         <div class="form-group">
                 <label for="email">Email address:</label>
-                <input class="form-control" id="email" name="email" 
-                       [(ngModel)]="credentialsToRegister.email" placeholder="Email">
+                <input  class="form-control"
+                        id="email" 
+                        name="email" 
+                        placeholder="Email"
+                        required
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,3})+$"
+                        [(ngModel)]="credentialsToRegister.email"
+                        #email="ngModel" >
         </div>
+        <div [hidden]="!(email.errors && email.errors.required) || email.pristine" class="alert alert-danger">
+                Email address is required.
+        </div>
+        <div [hidden]="!(email.errors && email.errors.pattern)" class="alert alert-danger">
+                Invalid email adress.
+        </div>
+
         <div class="form-group">
                 <label for="about">About:</label>
-                <input class="form-control" id="about" name="about" 
-                       [(ngModel)]="credentialsToRegister.about" placeholder="Write something about yourself">
+                <input  class="form-control" 
+                        type="textarea"
+                        id="about" 
+                        name="about" 
+                        placeholder="Write something about yourself"
+                        [(ngModel)]="credentialsToRegister.about" >
         </div>
+
         <div style="margin:auto;">
-            <button class="btn btn-primary btn-lg" (click)="addAccount()">Register</button>
+            <button [disabled]="!registerForm.form.valid"
+            class="btn btn-primary btn-lg" type="submit">Register</button>
         </div>
-    </form> 
+</form> 

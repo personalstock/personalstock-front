@@ -10,6 +10,8 @@ import { AccountService } from '../../services/account.service';
 export class AccountComponent implements AfterViewInit, OnInit {
 
   userAccount: Account;
+  isEditing = false;
+  repeatedPassword = '';
 
   constructor(private accountService: AccountService) { }
 
@@ -23,6 +25,12 @@ export class AccountComponent implements AfterViewInit, OnInit {
 
   saveChanges() {
     this.accountService.updateAccount(this.userAccount).subscribe(returnedAccount => this.userAccount = returnedAccount);
+    this.isEditing = false;
+  }
+
+  edit() {
+    this.isEditing = true;
+    this.repeatedPassword = this.userAccount.password;
   }
 
 }

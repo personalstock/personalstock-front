@@ -1,6 +1,13 @@
-<div class="alert alert-danger">
-  You are not logged in! You have to register or login in order to use the app.
+<div class="alert alert-danger unregistered-alert">
+  <p>
+    You are not logged in! You have to register or login in order to use the app!
+  </p>
+
+  <br>
+
+  <div style="margin-left:auto; margin-right:auto; width:300px;">
+    <button class="btn btn-lg btn-primary" routerLink="/login">Sign in</button>
+    &nbsp;&nbsp;
+    <button class="btn btn-lg btn-primary" routerLink="/register">Register</button>
+  </div>
 </div>
-<button class="btn btn-lg btn-primary" routerLink="/login">Login</button>
-&nbsp;&nbsp;
-<button class="btn btn-lg btn-primary" routerLink="/register">Register</button>
