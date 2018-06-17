@@ -1,6 +1,48 @@
-<h3>Add new video</h3>>
-Video name: <input #videoName>
-Video url: <input #videoUrl>
-Video description: <input #videoDescription> 
+<form #addVideoForm="ngForm">
+        <h2>Add a video response:</h2>
+        <br>
+        
+        <div class="form-group">
+            <label for="video-name">Title:</label>
+            <input class="form-control"
+                    id="video-name"
+                    name="video-name"
+                    (click)="disableVideoNameError()"
+                    #videoName>
+        </div>
+        <div *ngIf="videoNameError" class="alert alert-danger">
+                Video needs a title.
+        </div>
+        
+        <div class="form-group">
+            <label for="video-url">Embed url:</label>
+            <input class="form-control"
+                    id="video-url"
+                    name="video-url"
+                    (click)="disableVideoUrlError()"
+                    #videoUrl>
+        </div>
+        <div *ngIf="videoUrlError" class="alert alert-danger">
+                Correct url must be provided.
+        </div>
 
-<button (click)="addVideo()">Add video</button>
+        <div *ngIf="videoPreviewUrl && videoPreviewUrl.length !== 0">
+            <iframe width="854" height="480" [src]='videoPreviewUrl' frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <div class="form-group">
+            <label for="video-description">Description:</label>
+            <input class="form-control"
+                    id="video-description"
+                    name="video-description"
+                    #videoDescription>
+        </div>
+        
+        <button (click)="previewVideo()" class="btn btn-primary">Preview video</button>
+        
+        &nbsp;&nbsp;
+        
+        <button (click)="addVideo()" class="btn btn-primary">Save order</button>
+
+</form> 
+        

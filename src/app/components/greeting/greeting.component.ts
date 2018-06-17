@@ -24,8 +24,6 @@ export class GreetingComponent implements DoCheck {
     } else {
       this.usernameToGreet = 'guest';
     }
-
-    console.log('GreetingComponent DoCheck: ' + JSON.stringify(this.loggedUser));
   }
 
   logout() {

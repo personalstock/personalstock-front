@@ -33,4 +33,8 @@ export class AccountComponent implements AfterViewInit, OnInit {
     this.repeatedPassword = this.userAccount.password;
   }
 
+  cancelEdit() {
+    this.isEditing = false;
+  }
+
 }

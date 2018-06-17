@@ -1,32 +1,39 @@
 <h2>My orders</h2>
-before
-<div class="col-lg-5">
-  <div class="panel-group">
+<br>
 
-    <div *ngFor="let order of myOrders">
+<div class="panel-group">
 
-          <div [ngClass]="{'panel': true, 'panel-primary': true}">
+  <div *ngFor="let order of myOrders">
 
-            <div class="panel-heading">
-              {{ order.name }}
-            </div>
+        <div [ngClass]="{'panel': true, 'panel-primary': true}">
 
-            <div class="panel-body">
-              Location: {{ order.location1 }} {{ order.location2 }}
-              <br>
-              Description: {{ order.description }}
-              <br>
-              Price: {{ order.price }}
-            </div>
-            
-            <button (click)="seeVideos(order.id)">Check order videos</button>
-
+          <div class="panel-heading">
+            {{ order.name }}
           </div>
-          <br>
-    </div>
 
+          <div class="panel-body">
+            <div class="col-md-4">
+              <b>Location:</b> {{ order.location1 }} {{ order.location2 }}
+              <br>
+              <b>Price:</b> {{ order.price }} zł
+              <br>
+              <b>Description:</b> {{ order.description }}
+              <br><br>
+              <button (click)="seeVideos(order.id)" class="btn btn-primary">Check order videos</button>
+            </div>
+            <div class="col-md-8">
+              <img [src]="myOrdersGoogleMapLocations.get(order.id)" alt="Can't generate GoogleMap image." align = "right">
+            </div>
+          </div>
+
+        </div>
+
+        <br><br>
+        
   </div>
+
 </div>
+
 
 
 

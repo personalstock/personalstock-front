@@ -1,4 +1,4 @@
-<form class="register-form" #registerForm="ngForm">
+<form #addOrderForm="ngForm">
 <h2>Create new order:</h2>
 <br>
 
@@ -7,20 +7,58 @@
     <input class="form-control"
             id="order-name"
             name="order-name"
-            (action)="disableOrderError"
+            (click)="disableOrderNameError()"
             #createdOrderName>
 </div>
-<div *ngIf="orderNoNameError">
-        At least 3 characters is required.
+<div *ngIf="orderNameError" class="alert alert-danger">
+        Order must have a name.
 </div>
 
-Order name: 
+<div class="form-group">
+        <label for="order-location1">Location:</label>
+        <input class="form-control"
+                id="order-location1"
+                name="order-location1"
+                (click)="disableOrderLocationError()"
+                #createdOrderLocation1>
+        <br>
+        <input class="form-control"
+                id="order-location2"
+                name="order-location2"
+                (click)="disableOrderLocationError()"
+                #createdOrderLocation2>
+</div>
+<div *ngIf="orderLocationError" class="alert alert-danger">
+        Order location is required.
+</div>
+<img [src]="googleMapApiUrl" alt="Click 'Preview location' to see the image." align = "middle">
 <br>
-Location: <input #createdOrderLocation1> &nbsp; <input #createdOrderLocation2>
 <br>
-Price: <input #createdOrderPrice>
-<br>
-Description: <input #createdOrderDescription>
-<button (click)="saveOrder()">Save order</button>
+
+<div class="form-group">
+        <label for="order-price">Price (zł):</label>
+        <input class="form-control"
+                id="order-price"
+                name="order-price"
+                (click)="disableOrderPriceError()"
+                #createdOrderPrice>
+</div>
+<div *ngIf="orderPriceError" class="alert alert-danger">
+        Order must have a valid price.
+</div>
+
+<div class="form-group">
+        <label for="order-description">Description:</label>
+        <input class="form-control"
+                id="order-description"
+                name="order-description"
+                #createdOrderDescription>
+</div>
+
+<button (click)="previewLocation()" class="btn btn-primary">Preview location</button>
+
+&nbsp;&nbsp;
+
+<button (click)="saveOrder()" class="btn btn-primary">Save order</button>
 
 </form> 

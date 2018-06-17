@@ -20,7 +20,6 @@ export class AppComponent implements DoCheck {
 
   ngDoCheck() {
     this.accountService.getLoggedAccount().subscribe(returnAcc => this.appCompLoggedUser = returnAcc);
-    console.log('AppComponent doCheck: ' + JSON.stringify(this.appCompLoggedUser));
   }
 
 }

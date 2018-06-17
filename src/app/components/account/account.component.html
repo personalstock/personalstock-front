@@ -116,9 +116,13 @@
         </div>
 
         <div style="margin:auto;">
-            <button [disabled]="!updateForm.form.valid"
-                    class="btn btn-primary btn-lg" 
-                    type="submit">Update</button>
+                <button class="btn" (click)="cancelEdit()">Back</button>
+                
+                &nbsp;&nbsp;
+
+                <button [disabled]="!updateForm.form.valid"
+                        class="btn btn-primary btn-lg" 
+                        type="submit">Update</button>
         </div>
     </form> 
 

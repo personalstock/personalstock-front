@@ -1,4 +1,5 @@
 <h2>All orders</h2>
+<br>
 
 <div class="col-lg-6">
   <div class="panel-group">
@@ -10,10 +11,16 @@
           {{ order.name }}
         </div>
         <div class="panel-body">
-          Order location: {{ order.location1 }} {{ order.location2 }}
-          <br>
-          Price: {{ order.price }}
-          <button (click)="showOrderDetails(order)">Details</button>
+          <div class="col-md-10">
+            Where? {{ order.location1 }} {{ order.location2 }}
+            <br>
+            Price: {{ order.price }} zł
+          </div>
+          <div class="col-md-2">
+            <button (click)="showOrderDetails(order)" 
+                    [ngClass]="{'btn': true, 'btn-primary': order === selectedOrder,
+                    'btn-default': order !== selectedOrder}">Details</button>
+          </div>
         </div>
       </div>
       <br>
@@ -22,9 +29,7 @@
   </div>
 </div>
 <div class="col-lg-6">
-  <div style="position:fixed;">
     <div *ngIf="selectedOrder !== null">
       <app-order-detail [order]="selectedOrder"></app-order-detail>
     </div>
-  </div>
 </div>

@@ -1,24 +1,35 @@
-<h3>Order details:</h3>
+<h2>Order details:</h2>
+<br>
 
-Name: {{ order.name }}
-<br>
-Location:
-<br>
-{{ order.location1 }}
-<br>
-{{ order.location2 }}
-<br>
-Price:
-<br>
-{{ order.price }}
-<br>
-About:
-<br>
-{{ description }}
-<br>
-<div *ngIf="accountService.loggedUser.id !== order.poster.id; else userOwnsOrderBlock">
-  <button (click)="addVideo()">Add video</button>
-</div>
 <ng-template #userOwnsOrderBlock>
-  <p>This is your order!</p>
+    <div class="alert alert-success">
+      This is your order!
+    </div>
 </ng-template>
+
+<h4>{{ order.name }}</h4>
+
+<br>
+
+Price: {{ order.price }} zł
+
+<br>
+
+<img [src]="googleMapApiUrl" alt="GoogleMap API error" align = "middle">
+
+<br>
+
+{{ order.location1 }}, {{ order.location2 }}
+
+<br>
+<br>
+
+About:
+{{ description }}
+
+<br>
+<br>
+
+<div *ngIf="accountService.loggedUser.id !== order.poster.id; else userOwnsOrderBlock">
+  <button (click)="addVideo()" class="btn btn-primary">Add video</button>
+</div>

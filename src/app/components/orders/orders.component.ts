@@ -30,7 +30,6 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   }
 
   showOrderDetails(order: Order) {
-    console.log('selected order' + JSON.stringify(order));
     this.selectedOrder = order;
   }
 
