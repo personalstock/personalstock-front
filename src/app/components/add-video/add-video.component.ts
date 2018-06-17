@@ -63,7 +63,7 @@ export class AddVideoComponent implements OnInit {
       this.videoUrlError = true;
       return;
     }
-
+    this.video.videoUrl = this.video.videoUrl.replace('watch?v=', 'embed/');
     this.videoService.addVideo(this.video).subscribe();
 
     this.router.navigate(['/myOrders']);
@@ -72,7 +72,6 @@ export class AddVideoComponent implements OnInit {
   previewVideo() {
     let urlToProcess: string = this.videoUrlRef.nativeElement.value;
     urlToProcess = urlToProcess.replace('watch?v=', 'embed/');
-    console.log(urlToProcess);
     this.videoPreviewUrl = this.sanitizer.bypassSecurityTrustResourceUrl(urlToProcess);
   }
 

@@ -1,7 +1,32 @@
-<h2>Videos:</h2>
+<div *ngIf="videos.length > 0; else noVideosBlock">
 
-<div *ngFor="let video of videos">
-  {{ video.name }}
-  {{ video.videoUrl }}
-  lala
+  <h2>Video responses for: {{ videos[0].order.name }}</h2>
+  <br>
+
+  <div class="panel-group">
+    <div *ngFor="let video of videos">
+
+      <div class="panel-heading">
+        Title: {{ video.name }}
+      </div>
+
+      <div class="panel-body">
+        <p>
+          Creator: {{ video.creator.login }}, {{ video.creator.email }}
+        </p>
+
+        <div *ngIf="videoSanitizedUrls.get(video.id)">
+            <iframe width="854" height="480" [src]='videoSanitizedUrls.get(video.id)' frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br><br>
+
 </div>
+<ng-template #noVideosBlock>
+  <p>
+    No videos were found for order no. {{ orderId }}.
+  </p>
+</ng-template>
