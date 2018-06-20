@@ -17,7 +17,9 @@
     About: {{ userAccount.about }}
 
     <br><br>
-    <button class="btn btn-primary" (click)="edit()">Edit changes</button>
+    <button class="btn btn-primary btn-lg" (click)="edit()">Edit</button>
+        &nbsp;&nbsp;
+    <button class="btn btn-danger btn-lg" (click)="deleteAccount()">Delete account</button> 
 </div>
 
 <div *ngIf="isEditing">
@@ -116,13 +118,14 @@
         </div>
 
         <div style="margin:auto;">
-                <button class="btn" (click)="cancelEdit()">Back</button>
+                <button class="btn btn-lg" (click)="cancelEdit()">Back</button>
                 
                 &nbsp;&nbsp;
 
                 <button [disabled]="!updateForm.form.valid"
                         class="btn btn-primary btn-lg" 
                         type="submit">Update</button>
+
         </div>
     </form> 
 

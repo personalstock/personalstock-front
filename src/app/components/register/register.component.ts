@@ -1,8 +1,8 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Account } from '../../model/account';
 import { AccountService } from '../../services/account.service';
-import { Router } from '@angular/router';
-import { LoggingService } from '../../services/logging.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +15,6 @@ export class RegisterComponent implements OnInit, DoCheck {
   repeatedPassword: string;
 
   constructor(private accountService: AccountService,
-              private loggingService: LoggingService,
               private router: Router) { }
 
   ngOnInit() {

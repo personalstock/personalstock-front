@@ -1,5 +1,11 @@
 <h2>All orders</h2>
 <br>
+<div *ngIf="orders.length === 0">
+  <p>
+    There are no orders.
+  </p>
+</div>
+
 
 <div class="col-lg-6">
   <div class="panel-group">

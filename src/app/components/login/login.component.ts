@@ -1,8 +1,8 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { AccountService } from '../../services/account.service';
-import { LoggingService } from '../../services/logging.service';
 import { Router } from '@angular/router';
 import { EventEmitter } from 'events';
+
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +14,7 @@ export class LoginComponent implements OnInit {
   login: string;
   password: string;
 
-  @Output()
-  eventEmitter: EventEmitter;
-
   constructor(private accountService: AccountService,
-              private logger: LoggingService,
               private router: Router) { }
 
   ngOnInit() {

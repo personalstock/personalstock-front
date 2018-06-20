@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
 
-  orders: Order[];
+  orders: Order[] = [];
   selectedOrder: Order;
 
   constructor(private orderService: OrderService,

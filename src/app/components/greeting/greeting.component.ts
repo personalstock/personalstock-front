@@ -1,6 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { AccountService } from '../../services/account.service';
-import { LoggingService } from '../../services/logging.service';
 import { Account } from '../../model/account';
 
 @Component({
@@ -13,8 +12,7 @@ export class GreetingComponent implements DoCheck {
   loggedUser: Account;
   usernameToGreet: string;
 
-  constructor(private accountService: AccountService,
-              private logger: LoggingService) { }
+  constructor(private accountService: AccountService) { }
 
   ngDoCheck() {
     this.accountService.getLoggedAccount().subscribe(returnAcc => this.loggedUser = returnAcc);
@@ -27,7 +25,6 @@ export class GreetingComponent implements DoCheck {
   }
 
   logout() {
-    this.logger.add('GreetingComponent: logging out');
     this.accountService.logout();
   }
 

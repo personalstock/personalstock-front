@@ -37,4 +37,9 @@ export class AccountComponent implements AfterViewInit, OnInit {
     this.isEditing = false;
   }
 
+  deleteAccount() {
+    this.accountService.logout();
+    this.accountService.deleteAccount(this.userAccount).subscribe();
+  }
+
 }

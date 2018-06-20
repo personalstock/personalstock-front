@@ -1,61 +1,48 @@
-import { Injectable, OnInit, DoCheck } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable, OnInit, DoCheck } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 import { Account } from '../model/account';
-import { LoggingService } from './logging.service';
-import { AccountComponent } from '../components/account/account.component';
-import { Observable, of } from 'rxjs';
-import { LoginService } from '../service/login.service';
 
+const LOGIN_URL = 'http://localhost:8080/api/account/login';
 const ACCOUNT_API_URL = 'http://localhost:8080/api/account';
 
 const HTTP_HEADERS_API = {
   headers: new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'})
 };
+const HTTP_HEADERS_LOGIN = {
+  headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded', 'Access-Control-Allow-Origin': '*'})
+};
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService implements OnInit, DoCheck {
+export class AccountService {
 
+  loggedUser: Account = null;
 
-  isUserLoggedIn: boolean;
-  loggedUser: Account;
-
-
-  ngDoCheck() {
-    console.log('auth service: ' + this.loggedUser);
-  }
-
-  constructor(private httpClient: HttpClient,
-              // private loggingService: LoggingService,
-              private loginService: LoginService) { }
-
-  ngOnInit() {
-    this.isUserLoggedIn = false;
-    this.loggedUser = null;
-    // this.loggingService.add('AuthenticationService: initialised');
-  }
+  constructor(private httpClient: HttpClient) { }
 
   login(login: string, password: string) {
-    this.loginService.login(login, password).subscribe(responseAccount => {
+    const credentials = 'login=' + login + '&password=' + password;
+
+    this.httpClient.post<Account>(LOGIN_URL, credentials, HTTP_HEADERS_LOGIN).subscribe(responseAccount => {
       this.loggedUser = responseAccount;
+      localStorage.setItem('currentUser', JSON.stringify(responseAccount));
     });
-    this.isUserLoggedIn = true;
   }
 
   getLoggedAccount(): Observable<Account> {
+    this.loggedUser = JSON.parse(localStorage.getItem('currentUser'));
     return of(this.loggedUser);
   }
 
   logout() {
-    this.isUserLoggedIn = false;
     this.loggedUser = null;
-    // this.loggingService.add('AuthenticationService: logged out, loggedUser: ' + JSON.stringify(this.loggedUser));
+    localStorage.setItem('currentUser', null);
   }
 
   addAccount(account: Account): Observable<Account> {
-    console.log('AuthService: about to add account ' + JSON.stringify(account));
     return this.httpClient.post<Account>(ACCOUNT_API_URL, account, HTTP_HEADERS_API);
   }
 
@@ -63,8 +50,8 @@ export class AccountService implements OnInit, DoCheck {
     return this.httpClient.put<Account>(ACCOUNT_API_URL, account, HTTP_HEADERS_API);
   }
 
-  deleteAccount(account: Account) {
-    this.httpClient.request('delete', ACCOUNT_API_URL, {body: account});
+  deleteAccount(account: Account): Observable<any> {
+    return this.httpClient.request('delete', ACCOUNT_API_URL, {body: account});
   }
 
 }

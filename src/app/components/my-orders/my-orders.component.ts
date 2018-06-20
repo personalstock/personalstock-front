@@ -41,6 +41,13 @@ export class MyOrdersComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/response'], {queryParams: {order: orderId}});
   }
 
+  deleteOrder(order: Order) {
+    this.orderService.deleteOrder(order).subscribe();
+    this.myOrders = [];
+    this.getMyOrders();
+    setTimeout(() => this.getGoogleApiUrls(), 100);
+  }
+
   getGoogleApiUrls() {
     for (const order of this.myOrders) {
       const googleMapUrl = 'https://maps.googleapis.com/maps/api/staticmap?size=500x300&maptype=roadmap&markers='

@@ -1,5 +1,10 @@
 <h2>My orders</h2>
 <br>
+<div *ngIf="myOrders.length === 0">
+  <p>
+    You have no orders.
+  </p>
+</div>
 
 <div class="panel-group">
 
@@ -20,6 +25,8 @@
               <b>Description:</b> {{ order.description }}
               <br><br>
               <button (click)="seeVideos(order.id)" class="btn btn-primary">Check order videos</button>
+              &nbsp;&nbsp;
+              <button (click)="deleteOrder(order)" class="btn btn-danger">Delete order</button>
             </div>
             <div class="col-md-8">
               <img [src]="myOrdersGoogleMapLocations.get(order.id)" alt="Can't generate GoogleMap image." align = "right">

@@ -1,9 +1,0 @@
-<p>
-  logging works!
-</p>
-<div *ngIf="loggingService.logs.length">
-  <div *ngFor="let line of loggingService.logs">
-    {{ line }}
-  </div>
-  <button (click)=loggingService.clear()>Clear</button>
-</div>

@@ -18,7 +18,6 @@ export class OrderService {
   constructor(private httpClient: HttpClient) { }
 
   addOrder(order: Order): Observable<Order> {
-    console.log('addingOrder' + JSON.stringify(order));
     return this.httpClient.post<Order>(ORDER_API_URL, order, HTTP_HEADERS_API);
   }
 
@@ -29,6 +28,10 @@ export class OrderService {
   getOrdersByPoster(posterId: number): Observable<Order[]> {
     const urlQuery = ORDER_API_URL + '?poster=' + posterId;
     return this.httpClient.get<Order[]>(urlQuery, HTTP_HEADERS_API);
+  }
+
+  deleteOrder(order: Order): Observable<any> {
+    return this.httpClient.request('delete', ORDER_API_URL, {body: order});
   }
 
 }
