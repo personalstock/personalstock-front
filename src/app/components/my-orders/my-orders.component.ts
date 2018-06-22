@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Order } from '../../model/order';
 import { AccountService } from '../../services/account.service';
 import { OrderService } from '../../services/order.service';
+import { GoogleApiService } from '../../services/google-api.service';
 
 @Component({
   selector: 'app-my-orders',
@@ -17,6 +18,7 @@ export class MyOrdersComponent implements OnInit, AfterViewInit {
   accountId: number;
 
   constructor(private orderService: OrderService,
+              private googleApiService: GoogleApiService,
               private accountService: AccountService,
               private router: Router) { }
 
@@ -37,6 +39,10 @@ export class MyOrdersComponent implements OnInit, AfterViewInit {
                         });
   }
 
+  getGoogleApiUrls() {
+    this.myOrdersGoogleMapLocations = this.googleApiService.getGoogleApiUrls(this.myOrders);
+  }
+
   seeVideos(orderId: number) {
     this.router.navigate(['/response'], {queryParams: {order: orderId}});
   }
@@ -48,14 +54,5 @@ export class MyOrdersComponent implements OnInit, AfterViewInit {
     setTimeout(() => this.getGoogleApiUrls(), 100);
   }
 
-  getGoogleApiUrls() {
-    for (const order of this.myOrders) {
-      const googleMapUrl = 'https://maps.googleapis.com/maps/api/staticmap?size=500x300&maptype=roadmap&markers='
-      + order.location1 + ',' + order.location2
-      + '&key=AIzaSyDA-Pqh_zbJiUQ5W23YC9n7h3ByV2W1fUY';
-
-      this.myOrdersGoogleMapLocations.set(order.id, googleMapUrl);
-    }
-  }
 
 }

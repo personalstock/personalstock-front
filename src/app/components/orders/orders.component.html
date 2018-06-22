@@ -6,6 +6,19 @@
   </p>
 </div>
 
+<div>
+  <agm-map [latitude]="52.2297" [longitude]="21.0122">
+    <div *ngFor="let order of orders">
+      <agm-marker *ngIf="ordersCoordinates.get(order.id)" [latitude]="ordersCoordinates.get(order.id).lat" [label]="order.name" 
+                  [longitude]="ordersCoordinates.get(order.id).lng" [markerClickable]="true" (markerClick)="showOrderDetails(order)">
+        <agm-info-window>{{ order.name }}</agm-info-window>            
+      </agm-marker>
+    </div>
+  </agm-map>
+</div>
+
+<br>
+<hr>
 
 <div class="col-lg-6">
   <div class="panel-group">
